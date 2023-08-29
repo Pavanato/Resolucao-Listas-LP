@@ -20,6 +20,7 @@ def add_person(data, name, age, hobbies):
     data.append({"name": name, "age": age, "city": "", "hobbies": hobbies})
     return data
 
+
 def remove_person(data, name):
     for index in data:
         if name.upper() in index["name"].upper():
@@ -28,7 +29,8 @@ def remove_person(data, name):
 
     print(f"{name} is not in the data")
     return data
-        
+
+
 def get_ages(data):
     ages = []   
     for index in data:
@@ -36,11 +38,13 @@ def get_ages(data):
     
     return (min(ages), int(sum(ages) / len(ages)), max(ages))
 
+
 def get_hobbies(data):
     dic = {}
     for i, index in enumerate(data):
         dic[index["name"]] = index["hobbies"]
     return dic
+
 
 def get_people_by_hobbies(data: list, hobbies: dict):
     sorted_data = sorted(data, key=lambda x: x['age'])
@@ -50,7 +54,7 @@ def get_people_by_hobbies(data: list, hobbies: dict):
             if values in index['hobbies']:
                 names.append(index['name'])
     return names
-    
+
 
 def match_people(data, name=None, min_age=None, max_age=None, city=None, hobbies=[]):
     sorted_data = sorted(data, key=lambda x: x['age'])
@@ -85,7 +89,7 @@ def match_people(data, name=None, min_age=None, max_age=None, city=None, hobbies
             cur_hobbies = hobbies
 
         # Tests restrictions
-        if cur_name != index["name"] or min_age >= index["age"] or max_age <= index["age"] or cur_city != index["city"] or sorted(cur_hobbies) != sorted(index["hobbies"]):
+        if cur_name.upper() != index["name"].upper() or min_age >= index["age"] or max_age <= index["age"] or cur_city.upper() != index["city"].upper() or sorted(cur_hobbies) != sorted(index["hobbies"]):
             cur_name = None
             cur_city = None
             cur_hobbies = []
